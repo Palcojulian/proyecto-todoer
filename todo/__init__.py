@@ -6,7 +6,7 @@ def create_app():
 
     app.config.from_mapping( #Metodo from_mapping, nos permitira definir variables de configuración 
         SECRET_KEY='mikey',  #Llave para definir, generar las sesiones en la aplicación, nombre tecnico 'cookie' 
-        DATABASE_HOST= os.environ.get('FLASK_DATABASE_HOST'),
+        DATABASE_HOST= os.environ.get('FLASK_DATABASE_HOST'), #Variables de entorno
         DATABASE_USER= os.environ.get('FLASK_DATABASE_USER'),
         DATABASE_PASSWORD= os.environ.get('FLASK_DATABASE_PASSWORD'),
         DATABASE= os.environ.get('FLASK_DATABASE')

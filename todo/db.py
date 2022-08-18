@@ -14,7 +14,6 @@ from flask.cli import with_appcontext
 
 from .schema import instructions #va contener todas las scrips de la base de datos
 
-
 def get_db():
     if 'db' not in g:
         g.db = mysql.connector.connect(
@@ -33,5 +32,21 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
+def init_db():
+    db, c = get_db()
+
+    for i in instructions:
+        c.execute(i)
+    
+    db.commit()
+
+@click.command('init-db') #Para llamardo desde de la terminal, para ejecutar esta funcion
+@with_appcontext          #Para que la funcion puedan acceder a las variables de configuración
+def init_db_command():
+    init_db()
+    click.echo('Base de datos inicializada')
+
+
 def init_app(app):
     app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)

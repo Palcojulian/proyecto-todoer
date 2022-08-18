@@ -33,9 +33,9 @@ def register():
             )
             db.commit()
         
+        flash(error)
         return redirect(url_for('auth.login'))
-
-    flash(error)
+    
     return render_template('auth/register.html')
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -62,5 +62,6 @@ def login():
             session['user_id'] = user['id']
             return redirect(url_for('index'))
     
-    flash(error)
+        flash(error)
+        
     return render_template('auth/login.html')

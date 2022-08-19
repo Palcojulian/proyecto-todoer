@@ -17,7 +17,7 @@ def register():
         db, c = get_db()
         error = None
         c.execute(
-            'select id from user where username = %s'
+            'select id from user where username = %s', (username,)
         )
         if not username:
             error = 'Username es requerido'
@@ -26,9 +26,9 @@ def register():
         elif c.fetchone() is not None:
             error = 'El usuario {} se encuentra registrado.'.format(username)
         
-        if error in None:
+        if error is None:
             c.execute(
-                'insert into user (username, password) values(%s,%s)',
+                'insert into user(username, password) values(%s,%s)',
                 (username,generate_password_hash(password))
             )
             db.commit()
@@ -63,5 +63,5 @@ def login():
             return redirect(url_for('index'))
     
         flash(error)
-        
+
     return render_template('auth/login.html')

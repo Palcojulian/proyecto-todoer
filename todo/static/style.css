@@ -1,0 +1,26 @@
+body {
+    background-color: #B4F5F0;
+    margin: 0;
+}
+
+nav {
+    background-color: #059DC0;
+    vertical-align: middle;
+    width: 100%;
+    margin: 0;
+    position: relative;
+}
+
+nav h1, nav ul, nav ul li {
+    display: inline;
+}
+
+ul {
+    padding: 0;
+    background-color: blue;
+}
+
+nav ul li a{
+    text-decoration: none;
+    background-color: white;
+}

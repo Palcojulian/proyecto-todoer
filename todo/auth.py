@@ -32,6 +32,7 @@ def register():
                 (username,generate_password_hash(password))
             )
             db.commit()
+            error = '¡Registro exitoso!'
         
         flash(error)
         return redirect(url_for('auth.login'))
@@ -65,3 +66,19 @@ def login():
         flash(error)
 
     return render_template('auth/login.html')
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+
+
+def login_required(view): #Funcion decoradora "view" -> funcion de la vista, que define nuestros endpoints
+    @functools.wraps(view) 
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        
+
+        return view(**kwargs) # A la vista le pasamos todos los argumentos
+    
+    return wrapped_view

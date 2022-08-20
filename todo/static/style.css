@@ -3,24 +3,129 @@ body {
     margin: 0;
 }
 
+/*Diseño del nav*/
+
+/*Contenedor*/
 nav {
     background-color: #059DC0;
-    vertical-align: middle;
     width: 100%;
     margin: 0;
-    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2) ;
 }
 
-nav h1, nav ul, nav ul li {
-    display: inline;
+/*Diseño de "ul"*/
+.ul-right {
+    float: right;
 }
 
-ul {
-    padding: 0;
-    background-color: blue;
+.ul-left{
+    float: left;
 }
 
-nav ul li a{
+.ul-left, .ul-right {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+/*Diseño de los "li" */
+
+.li-content {
+    display: inline-block;
+}
+
+/*Diseño de "a" */
+.a-left {
     text-decoration: none;
-    background-color: white;
+    display: block;
+    padding: 15px;
+    color: #000C66;
+    background-color: #A0E7E5;
+    transition: 0.3s;
+}
+
+.a-right{
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    background-color: #A0E7E5;
+    border-radius: 3px;
+    color: #000C66;
+    transition: 0.3s;
+}
+
+.a-right:hover, .a-left:hover{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: scale(1.03,1.03);
+}
+
+/* Diseño del formulario*/
+header {
+    text-align: center;
+    color: #000C66;
+}
+
+.content{
+    text-align: center;
+}
+
+.form-content{
+    width: 250px;
+    height: 400px;
+    background-color: #059DC0;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
+    padding: 0px 20px;
+    transition: 0.3s;
+}
+
+.form-content:hover {
+    transform: scale(1.03, 1.03);
+}
+
+.label-form {
+    display: block;
+    background-color: #A0E7E5;
+    margin-top: 20px;
+    padding: 5px;
+    color: #000C66;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.form-input-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #000C66;
+    color: white;
+}
+
+.form-input-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: solid 1px #000C66;
+}
+
+i {
+    margin-top: 65px;
 }

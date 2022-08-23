@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Nuevo Todo{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form class="form-content" action="" method="POST">
+        <i class="fa-solid fa-pen-clip fa-5x"></i>
+        <label class="label-form" for="description">Descripción</label>
+        <input class="form-input-description" type="text" name="description" id="description" required placeholder="...">
+        <input class="form-input-btn" type="submit" value="Guardar">
+    </form>
+{% endblock %}

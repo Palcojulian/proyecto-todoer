@@ -9,7 +9,7 @@ from todo.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@bp.route('/register', methods=['GET','POST'])
+@bp.route('/register', methods=['GET','POST']) #Vista de registrar
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -40,7 +40,7 @@ def register():
     
     return render_template('auth/register.html')
 
-@bp.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET', 'POST']) #Vista de iniciar sesión
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -62,12 +62,18 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('todo.index'))
     
         if error != None:
             flash(error)
 
     return render_template('auth/login.html')
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
 
 
 #Funcion decoradora, que se va encargar de colocar el usuario dentro de g

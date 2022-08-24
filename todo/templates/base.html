@@ -13,9 +13,14 @@
             <ul class="ul-left">
                 <li class="li-content"><a class="a-left" href="#">Todo List</a></li>
             </ul>
+            <ul class="ul-name-spam">
+                {% if g.user %}
+                    <li class="li-content"><span class="user-name">¡Bienvenido {{ g.user['username']}}!</span></li>
+                {% endif %}
+            </ul>
             <ul class="ul-right">
                 {% if g.user %}
-                    <li class="li-content"><span>{{ g.user['username']}}</span></li>
+                
                     <li class="li-content"><a class="a-right" href="{{ url_for('auth.logout') }}">Cerrar sesión</a></li>
                 {% else %}
                     <li class="li-content"><a class="a-right" href="{{ url_for('auth.register')}}">Registrarse</a></li>

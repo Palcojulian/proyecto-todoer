@@ -11,7 +11,11 @@
     <body>
         <nav>
             <ul class="ul-left">
-                <li class="li-content"><a class="a-left" href="#">Todo List</a></li>
+                {% if g.user %}
+                    <li class="li-content"><a class="a-left" href="{{ url_for('todo.index') }}">Todo List</a></li>
+                {% else %}
+                    <li class="li-content"><a class="a-left" href="{{ url_for('auth.login') }}">Todo List</a></li>
+                {% endif %}
             </ul>
             <ul class="ul-name-spam">
                 {% if g.user %}
@@ -20,7 +24,6 @@
             </ul>
             <ul class="ul-right">
                 {% if g.user %}
-                
                     <li class="li-content"><a class="a-right" href="{{ url_for('auth.logout') }}">Cerrar sesión</a></li>
                 {% else %}
                     <li class="li-content"><a class="a-right" href="{{ url_for('auth.register')}}">Registrarse</a></li>

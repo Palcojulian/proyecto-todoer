@@ -25,6 +25,7 @@ def create():
     if request.method == 'POST':
         description = request.form['description']
         error = None
+        mensaje = ''
 
         if not description:
             error = 'Descripcion requerida'
@@ -40,12 +41,20 @@ def create():
                 (description, False, g.user['id'])
             )
             db.commit()
+            mensaje = 'Tarea creada con exito'
+            flash(mensaje)
             return redirect(url_for('todo.index'))
-
+        
     return render_template('todo/create.html')
 
-@bp.route('/update', methods=['GET', 'POST'])
+@bp.route('/<int:id>/update', methods=['GET', 'POST'])
 @login_required
-def update():
+def update(id):
+    
+    return render_template('todo/update.html', todo=todo)
+
+@bp.route('/<int:id>/delete', methods=['POST'])
+@login_required
+def delete(id):
     
     return ''

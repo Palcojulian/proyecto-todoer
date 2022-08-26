@@ -16,15 +16,16 @@ def register():
         password = request.form['password']
         db, c = get_db()
         error = None
+        mensaje = ''
         c.execute(
             'select id from user where username = %s', (username,)
         )
         if not username:
-            error = 'Username es requerido'
+            error = mensaje = 'Username es requerido'
         if not password:
-            error = 'Password es requerido'
+            error = mensaje = 'Password es requerido'
         elif c.fetchone() is not None:
-            error = 'El usuario {} se encuentra registrado.'.format(username)
+            error = mensaje = 'El usuario {} se encuentra registrado.'.format(username)
         
         if error is None:
             c.execute(
@@ -32,9 +33,9 @@ def register():
                 (username,generate_password_hash(password))
             )
             db.commit()
+            mensaje = '¡Usuario creado con exito!'
         
-        if error != None:
-            flash(error)
+        flash(mensaje)
 
         return redirect(url_for('auth.login'))
     

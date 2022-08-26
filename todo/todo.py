@@ -84,6 +84,8 @@ def update(id):
                 (description, completed, id)
             )
             db.commit()
+            error='¡Tarea actulizada con exito!'
+            flash(error)
             return redirect(url_for('todo.index'))
 
     return render_template('todo/update.html', todo=todo)
@@ -91,5 +93,10 @@ def update(id):
 @bp.route('/<int:id>/delete', methods=['POST'])
 @login_required
 def delete(id):
-    
-    return ''
+    db, c = get_db()
+    c.execute(
+        'delete from todo where id =%s', (id,)
+    )
+    db.commit()
+    flash('Tarea eliminada')
+    return redirect(url_for('todo.index'))

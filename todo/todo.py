@@ -13,7 +13,8 @@ bp = Blueprint('todo', __name__)
 def index():
     db, c = get_db()
     c.execute(
-        'select t.id, t.description, u.username, t.completed, t.created_at from todo t JOIN user u on t.create_by = u.id order by created_at desc'
+        'select t.id, t.description, u.username, t.completed, t.created_at from todo t JOIN user u on t.create_by = u.id where t.create_by = %s order by created_at desc',
+        (g.user['id'], )
     )
 
     todos = c.fetchall()
@@ -80,8 +81,8 @@ def update(id):
         else:
             db, c = get_db()
             c.execute(
-                'update todo set description = %s, completed = %s where id = %s',
-                (description, completed, id)
+                'update todo set description = %s, completed = %s where id = %s and create_by = %s',
+                (description, completed, id, g.user['id'])
             )
             db.commit()
             error='¡Tarea actulizada con exito!'
@@ -95,7 +96,7 @@ def update(id):
 def delete(id):
     db, c = get_db()
     c.execute(
-        'delete from todo where id =%s', (id,)
+        'delete from todo where id =%s and create_by = %s', (id,g.user['id'])
     )
     db.commit()
     flash('Tarea eliminada')

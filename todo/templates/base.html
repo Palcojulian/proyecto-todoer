@@ -12,9 +12,9 @@
         <nav>
             <ul class="ul-left">
                 {% if g.user %}
-                    <li class="li-content"><a class="a-left" href="{{ url_for('todo.index') }}">Todo List</a></li>
+                    <li class="li-content"><a class="a-left" href="{{ url_for('todo.index') }}">Lista de tareas</a></li>
                 {% else %}
-                    <li class="li-content"><a class="a-left" href="{{ url_for('auth.login') }}">Todo List</a></li>
+                    <li class="li-content"><a class="a-left" href="{{ url_for('auth.login') }}">Lista de tareas</a></li>
                 {% endif %}
             </ul>
             <ul class="ul-name-spam">

@@ -10,11 +10,9 @@
 
         <label class="label-form"  for="description">Descripción</label>
         <input class="form-input-description" name="description" id="description" value="{{ request.form['description'] or todo['description'] }}" required>
-        <label for="completed">Completado</label>
-        <input type="checkbox" name="completed" id="completed" {% if todo['completed'] == 1 %}checked{% endif %} />
+        <label class="completed" for="completed">Completado</label>
+        <input class="check" type="checkbox" name="completed" id="completed" {% if todo['completed'] == 1 %}checked{% endif %} />
         <input class="form-input-btn" type="submit" value="Guardar"/>
     </form>
-    <form action="{{ url_for('todo.delete', id=todo['id']) }}" method="POST">
-        <input class="danger" type="submit" value="Eliminar" onclick="return confirm('Estas seguro de querer eliminarlo?')">
-    </form>
+    
 {% endblock %}
